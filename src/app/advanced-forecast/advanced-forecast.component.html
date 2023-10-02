@@ -1,0 +1,45 @@
+<div class="advancedForecastContainer">
+    <div class="dateCaption">
+        <h2>{{dateCaption | date : 'shortDate'}}</h2>
+    </div>
+    <div class="advancedForecastElement">
+        <div class="icon">
+            <img src="../../assets/pressure.png"/>
+        </div>
+        <div class="value">
+            <label class="value-label">{{getAverage(this.advancedForecast.pressure) | number : '1.0-0'}} hPa</label>
+        </div>
+    </div>
+    <div class="advancedForecastElement">
+        <div class="icon">
+            <img src="../../assets/rainfall.png"/>
+        </div>
+        <div class="value">
+            <label class="value-label">{{getAverage(this.advancedForecast.rain) | number : '1.2-2'}} mm</label>
+        </div>
+    </div>
+    <div class="advancedForecastElement">
+        <div class="icon">
+            <img src="../../assets/snowfall.png"/>
+        </div>
+        <div class="value">
+            <label class="value-label">{{getAverage(this.advancedForecast.snowfall) | number : '1.2-2'}} cm</label>
+        </div>
+    </div>
+    <div class="advancedForecastElement">
+        <div class="icon">
+            <img src="../../assets/czarne_oczko.png"/>
+        </div>
+        <div class="value">
+            <label class="value-label">{{roundNumber(getAverage(this.advancedForecast.visibility))}} m</label>
+        </div>
+    </div>
+    <div class="advancedForecastElement">
+        <div class="icon">
+            <img src="../../assets/windspeed.png"/>
+        </div>
+        <div class="value">
+            <label class="value-label">{{getAverage(this.advancedForecast.windspeed) | number : '1.0-0'}} km/h</label>
+        </div>
+    </div>
+</div>

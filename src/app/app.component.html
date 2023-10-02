@@ -1,0 +1,41 @@
+
+<form #weatherForm="ngForm" (ngSubmit)="submit()" class="cityForm">
+    <div class="input-group">
+        <div class="form-floating">
+            <input name="city" type="text" class="form-control city" id="city" [(ngModel)]="city" placeholder="Miasto"
+                required />
+            <label for="city">City</label>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <div class="form-floating">
+            <input name="days" type="number" class="form-control days" [max]="16" id="days" [(ngModel)]="days" placeholder="days"
+                required />
+            <label for="Days">Days</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary submit-btn" [disabled]="weatherForm.invalid">Submit</button>
+</form>
+<div class="cityAndForecastContainer" *ngIf="dailyForecast.length != 0">
+    <h1 class="cityLabel">{{storagedCity}}</h1>
+    <div class="dailyForecastContainer" *ngIf="dailyForecast.length != 0">
+        <div class="dailyForecastCard" *ngFor="let singleForecast of dailyForecast; index as i" (click)="showAdvancedForecast(i)">
+            <div class="day">
+                {{singleForecast.day[0].toString() | date: 'dd-MM-yyyy'}}
+            </div>
+            <div class="icon" [ngSwitch]="singleForecast.summary">
+                <img *ngSwitchCase="'cloudy'" class="icon-img" src="../assets/cloud.png" />
+                <img *ngSwitchCase="'partialCloudy'" class="icon-img" src="../assets/partialy_cloud.png" />
+                <img *ngSwitchCase="'sunny'" class="icon-img" src="../assets/sun.png" />
+                <img *ngSwitchCase="'rainy'" class="icon-img" src="../assets/rain.png" />
+            </div>
+            <div class="temperature">
+                {{maxTemperature[i] }}<sup>o</sup>C
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-advanced-forecast class="advanced-forecast-component" *ngIf="showAdvancedForecastFlag" [latitude]="lat" [longitude]="lng" [day]="dayIndex"></app-advanced-forecast>
