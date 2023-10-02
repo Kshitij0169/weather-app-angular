@@ -17,7 +17,6 @@ npm install -g @angular/cli
 Run the application:
 
 ```
-
 ng serve
 ```
 
